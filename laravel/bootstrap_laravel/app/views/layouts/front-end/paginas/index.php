@@ -18,18 +18,20 @@
 								$active = "active";
 								foreach ($postsCarrossel as $key => $post) {
 									$html .= '<div class="item '.$active.'">
-											  	<img width="100%" src="'.asset('assets/imgs/'.$post['nomeimagem']).'">
+											  	<a href="'.action('SiteController@listarTutorial', array('id' => $post['id'])).'">
+											  		<img width="100%" src="'.asset('assets/imgs/'.$post['nomeimagem']).'">
 											  	
-											  	<div class="container">
-													<div class="row">
-														<div class="col-md-8">
-															<h3>'.$post['titulo'].' <small>Posted on July 26th</small></h3>
-															<h5>
-																'.$post['minidescricao'].'
-															</h5>
+												  	<div class="container">
+														<div class="row">
+															<div class="col-md-8">
+																<h3>'.$post['titulo'].' <small>Posted on July 26th</small></h3>
+																<h5>
+																	'.$post['minidescricao'].'
+																</h5>
+															</div>
 														</div>
-													</div>
-											  	</div>
+												  	</div>
+												</a>
 											  </div>';
 
 									if ($active == "active") {
@@ -55,61 +57,41 @@
 		<?php include(app_path() . '/views/layouts/front-end/paginas/_gridPosts.php'); ?>
 	</div>
 </div>
-<?php print_r(); ?>
-<!-- Grid de postagens recente -->
+
+<!-- Grid de postagens mais vistos -->
 <div class="container">
 	<?php  
+
+		$doisPostsGridMaisVistos[] = $postsGridMaisVistos[0];
+		$doisPostsGridMaisVistos[] = $postsGridMaisVistos[1];
+		
+		$tresPostsGridMaisVistos[] = $postsGridMaisVistos[2];
+		$tresPostsGridMaisVistos[] = $postsGridMaisVistos[3];
+		$tresPostsGridMaisVistos[] = $postsGridMaisVistos[4];
+
 		$html = "";
 		$html .= '<div class="row">';
 		foreach ($postsGridMaisVistos as $key => $post) {
-			
-						<h2>Título do post</h2>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-						</p>
-					  </div>;
-
 			if($key < 2){
-				$html .= '<div class="col-md-6">'
+				$html .= '<div class="col-md-6">
+							<h2>'.$post['titulo'].'</h2>
+							<p>'.$post['minidescricao'].'</p>
+					  	  </div>';
 			}elseif ($key == 2) {
 				$html .= '</div>
-						  <div class="row">';
+						  <div class="row">
+						  	<div class="col-md-4">
+								<h2>'.$post['titulo'].'</h2>
+								<p>'.$post['minidescricao'].'</p>
+					  	  	</div>';
 			}else{
-
+				$html .= '<div class="col-md-4">
+								<h2>'.$post['titulo'].'</h2>
+								<p>'.$post['minidescricao'].'</p>
+					  	  	</div>';
 			}
 		}
+		$html .= '</div>';
+		echo $html;
 	?>
-
-	
-		
-		<div class="col-md-6">
-			<h2>Título do post</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-			</p>
-		</div>
-	</div>
-	
-	<hr>
-	
-	<div class="row">
-		<div class="col-md-4">
-			<h2>Título do post</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>Título do post</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-			</p>
-		</div>
-		<div class="col-md-4">
-			<h2>Título do post</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-			</p>
-		</div>
-	</div>
 </div>

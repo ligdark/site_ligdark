@@ -5,11 +5,18 @@ class SiteController extends BaseController {
 	protected $layout = 'layouts.front-end.main';
 	
 	public function index(){
-		$queryResult = Post::all()->toArray();
+		$postsCarrossel = Post::all()->toArray();
+		$postsGridMaisVistos = Post::all()->take(5)->toArray();
+		$postsGridRecentes = Post::all()->take(4)->toArray();
+		$contPosts = Post::all()->count();
+
 		//$this->layout->html = print_r($queryResult);
-		$this->layout->html = View::make('layouts.front-end.paginas.index', $queryResult)
-			->with('postsCarrossel', $queryResult)
-			->with('postsGridMaisVistos' , $queryResult);
+		$this->layout->html = View::make('layouts.front-end.paginas.index')
+			->with('postsCarrossel', $postsCarrossel)
+			->with('postsGridMaisVistos' , $postsGridMaisVistos)
+			->with('postsGridRecentes', array('postsGridRecentes' => $postsGridRecentes, 
+											  'contPosts' => $contPosts)
+			);
 	}
 
 	
@@ -17,8 +24,18 @@ class SiteController extends BaseController {
 		$this->layout->html = View::make('layouts.front-end.paginas.listaTutoriais');
 	}
 
+	public function listarTutorial($id){
+		$this->layout->html = View::make('layouts.front-end.paginas.listaTutoriais');
+	}
+
 	public function sobre(){
-		$this->layout->html = View::make('layouts.front-end.paginas.sobre');
+		$postsGridRecentes = Post::all()->take(4)->toArray();
+		$contPosts = Post::all()->count();
+
+		$this->layout->html = View::make('layouts.front-end.paginas.sobre')
+			->with('postsGridRecentes', array('postsGridRecentes' => $postsGridRecentes, 
+											  'contPosts' => $contPosts)
+			);
 	}
 
 	/**

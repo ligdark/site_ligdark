@@ -13,4 +13,5 @@
 
 Route::get('index', 'SiteController@index');
 Route::get('listartutoriais', 'SiteController@listarTutoriais');
+Route::get('listartutorial/{id}', 'SiteController@listarTutorial');
 Route::get('sobre', 'SiteController@sobre');
