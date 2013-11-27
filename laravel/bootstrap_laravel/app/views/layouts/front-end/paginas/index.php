@@ -55,16 +55,33 @@
 		<?php include(app_path() . '/views/layouts/front-end/paginas/_gridPosts.php'); ?>
 	</div>
 </div>
-
+<?php print_r(); ?>
 <!-- Grid de postagens recente -->
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h2>Título do post</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
-			</p>
-		</div>
+	<?php  
+		$html = "";
+		$html .= '<div class="row">';
+		foreach ($postsGridMaisVistos as $key => $post) {
+			
+						<h2>Título do post</h2>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, eos laboriosam ipsam doloremque libero quisquam deleniti autem officia aperiam facere. Alias, praesentium repellat officiis ipsam unde architecto nisi dicta aliquid.
+						</p>
+					  </div>;
+
+			if($key < 2){
+				$html .= '<div class="col-md-6">'
+			}elseif ($key == 2) {
+				$html .= '</div>
+						  <div class="row">';
+			}else{
+
+			}
+		}
+	?>
+
+	
+		
 		<div class="col-md-6">
 			<h2>Título do post</h2>
 			<p>
